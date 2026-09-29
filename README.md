@@ -1,23 +1,28 @@
 # Codex and Claude Code records
 
-Private backup containing local Codex and Claude Code records created on or after 2026-07-01 (Asia/Shanghai).
+Private backup containing local Codex and Claude Code records created on or after 2026-07-01 (Asia/Shanghai), updated 2026-09-29.
 
-## Integrity
+## Archive parts
 
-- Archive: `ai-records-from-2026-07-01-20260920T161051.tar.gz`
-- Size: `92925062` bytes
-- SHA-256: `252a6942ae0852419ba4c852c074bf418a518018dadd59dbebaa2127ec22c1a1`
+GitHub's per-file limit requires the archive to be split into two files:
 
-This archive contains private conversation and development history. Keep the repository private.
+- `ai-records-from-2026-07-01-20260929T100938.tar.gz.part-00` (94,371,840 bytes)
+- `ai-records-from-2026-07-01-20260929T100938.tar.gz.part-01` (13,706,189 bytes)
+
+Combined archive SHA-256: `447ecb241dbd041d72d306d094e3fcd7ceb2c5dd363a4bf2337caede9cfa949f`
 
 ## Restore
 
-Exit Codex and Claude Code first, then extract from the destination user's home directory:
+Download both parts into the same directory, then join and extract:
 
 ```bash
+cat ai-records-from-2026-07-01-20260929T100938.tar.gz.part-* \
+  > ai-records-from-2026-07-01-20260929T100938.tar.gz
+
+sha256sum ai-records-from-2026-07-01-20260929T100938.tar.gz
 cd "$HOME"
-tar -xzf /path/to/ai-records-from-2026-07-01-20260920T161051.tar.gz
+tar -xzf /path/to/ai-records-from-2026-07-01-20260929T100938.tar.gz
 chmod 700 "$HOME/.codex" "$HOME/.claude"
 ```
 
-Project paths should remain the same where possible so that existing sessions continue to map to their original working directories.
+The expected combined archive hash is the value above. Exit Codex and Claude Code before extracting. Keep this repository private because the archive contains conversation and development history.
